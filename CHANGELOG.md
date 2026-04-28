@@ -5,6 +5,8 @@ FlatLaf Change Log
 
 - System File Chooser:
   - macOS: `Cmd+A` (**Select All**) did not work in file dialog. (issue #1084)
+  - Block Swing input events (mouse, keyboard, etc.) while system file dialog is
+    shown. (issue #1100)
 - macOS: Fixed missing close/iconify/maximize buttons on inactive window, if
   system appearance is dark, but application appearance is light. (issue #1032)
 
