@@ -19,6 +19,7 @@ package com.formdev.flatlaf.jideoss.ui;
 import static com.formdev.flatlaf.FlatClientProperties.COMPONENT_TITLE_BAR_CAPTION;
 import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_HAS_FULL_BORDER;
 import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_SHOW_TAB_SEPARATORS;
+import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_TYPE;
 import static com.formdev.flatlaf.FlatClientProperties.clientPropertyBoolean;
 import static com.formdev.flatlaf.util.UIScale.scale;
 import java.awt.Color;
@@ -239,6 +240,10 @@ public class FlatJideTabbedPaneUI
 					_tabPane.revalidate();
 					_tabPane.repaint();
 					break;
+
+				case TABBED_PANE_TAB_TYPE:
+					_tabPane.repaint();
+					break;
 			}
 		};
 	}
@@ -432,19 +437,23 @@ public class FlatJideTabbedPaneUI
 	{
 		// paint tab separators
 		if( clientPropertyBoolean( _tabPane, TABBED_PANE_SHOW_TAB_SEPARATORS, showTabSeparators ) &&
-			!isLastInRun( tabIndex ) ) {
-			if( !isCardTabType() || !isSelected ) {
+			!isLastInRun( tabIndex ) )
+		{
+			if( isCardTabType() ) {
+				// some separators need to be omitted if selected tab is painted as card
 				int selectedIndex = _tabPane.getSelectedIndex();
-				if( !isCardTabType() || (tabIndex != selectedIndex - 1 && tabIndex != selectedIndex) )
+				if( tabIndex != selectedIndex - 1 && tabIndex != selectedIndex )
 					paintTabSeparator( g, tabPlacement, x, y, w, h );
-			}
+			} else
+				paintTabSeparator( g, tabPlacement, x, y, w, h );
 		}
 
-		if( isSelected ) {
-			if( isCardTabType() )
-				paintCardTabBorder( g, tabPlacement, x, y, w, h );
+		// paint active tab border
+		if( isSelected && isCardTabType() )
+			paintCardTabBorder( g, tabPlacement, x, y, w, h );
+
+		if( isSelected )
 			paintTabSelection( g, tabPlacement, x, y, w, h );
-		}
 	}
 
 	protected void paintTabSeparator( Graphics g, int tabPlacement, int x, int y, int w, int h ) {
@@ -699,7 +708,7 @@ public class FlatJideTabbedPaneUI
 	}
 
 	private int getTabType() {
-		Object value = _tabPane.getClientProperty( "JTabbedPane.tabType" );
+		Object value = _tabPane.getClientProperty( TABBED_PANE_TAB_TYPE );
 		if( value instanceof String )
 			return parseTabType( (String) value );
 		return tabType;

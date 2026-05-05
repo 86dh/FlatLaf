@@ -14,6 +14,7 @@ FlatLaf Change Log
   (issue #1103)
 - TextComponents: Fixed preferred width when leading/trailing components or
   icons are present. (issue #1110)
+- JideTabbedPane: Support card tabs. (PR #1094)
 
 
 ## 3.7.1
