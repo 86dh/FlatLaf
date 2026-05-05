@@ -626,7 +626,7 @@ public class FlatJideTabbedPaneUI
 				path.append( gap, false );
 
 				// fill gap with the tab's background colour
-				Color bg = getSelectedTabBackground( tabPlacement, selectedIndex );
+				Color bg = getSelectedTabBackground( selectedIndex );
 				g.setColor( FlatUIUtils.deriveColor( bg, _tabPane.getBackground() ) );
 				((Graphics2D) g).fill( gap );
 			}
@@ -786,7 +786,7 @@ public class FlatJideTabbedPaneUI
 		}
 	}
 
-	private Color getSelectedTabBackground( int tabPlacement, int tabIndex ) {
+	private Color getSelectedTabBackground( int tabIndex ) {
 		boolean enabled = _tabPane.isEnabled();
 		if( enabled && FlatUIUtils.isPermanentFocusOwner( _tabPane ) && focusColor != null )
 			return focusColor;
