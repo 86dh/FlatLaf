@@ -7,7 +7,8 @@ FlatLaf Change Log
   - macOS: `Cmd+A` (**Select All**) did not work in file dialog. (issue #1084)
 - macOS: Fixed missing close/iconify/maximize buttons on inactive window, if
   system appearance is dark, but application appearance is light. (issue #1032)
-
+- TextComponents: Fixed preferred width when leading/trailing components or
+  icons are present. (issue #1110)
 
 ## 3.7.1
 
