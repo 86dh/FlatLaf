@@ -7,6 +7,8 @@ FlatLaf Change Log
   - macOS: `Cmd+A` (**Select All**) did not work in file dialog. (issue #1084)
   - Block Swing input events (mouse, keyboard, etc.) while system file dialog is
     shown. (issue #1100)
+  - Windows: Fixed too small message dialogs (shown from approve callback).
+    (issue #1119)
 - macOS: Fixed missing close/iconify/maximize buttons on inactive window, if
   system appearance is dark, but application appearance is light. (issue #1032)
 - Linux with JetBrains Runtime: Fixed mouse "jumping" to other position when
