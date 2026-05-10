@@ -17,7 +17,8 @@ FlatLaf Change Log
 - TextComponents: Fixed preferred width when leading/trailing components or
   icons are present. (issue #1110)
 - JideTabbedPane: Support card tabs. (PR #1094)
-
+- Native libraries in Eclipse RCP: Fixed exception when runtime path contains
+  spaces. (issue #1102)
 
 ## 3.7.1
 
